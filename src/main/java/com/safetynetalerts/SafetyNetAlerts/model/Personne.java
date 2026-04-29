@@ -17,6 +17,8 @@ public class Personne {
     public String getAddress() {
         return address;
     }
+
+    // Commentaire test
 }
 
 /// lombok : ajouter dans pom + annotations
