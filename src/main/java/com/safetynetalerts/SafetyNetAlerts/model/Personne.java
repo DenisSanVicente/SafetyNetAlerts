@@ -19,6 +19,7 @@ public class Personne {
     }
 
     // Commentaire test
+    // Test 2
 }
 
 /// lombok : ajouter dans pom + annotations
