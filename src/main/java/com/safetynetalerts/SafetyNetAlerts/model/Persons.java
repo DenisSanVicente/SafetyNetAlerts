@@ -1,5 +1,10 @@
 package com.safetynetalerts.SafetyNetAlerts.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Persons {
 
     private String firstName;
@@ -12,7 +17,5 @@ public class Persons {
 
 
 
-}
 
-/// lombok : ajouter dans pom + annotations
-///  supprimer getters
+}
