@@ -2,25 +2,22 @@ package com.safetynetalerts.SafetyNetAlerts.controller;
 
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
 import com.safetynetalerts.SafetyNetAlerts.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController // SPRING MVC -- Définit une API REST
-@RequestMapping("/persons") // Définit une route de base (LOMBOK)
+@RestController
+@RequestMapping("/persons")
 public class PersonController {
 
-    private final PersonService service;
+    private final PersonService personService;
 
-
-    public PersonController(PersonService service) {
-        this.service = service;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
-    @GetMapping // endpoints HTTP GET
+    @GetMapping
     public List<Person> getAllPersons() {
-        return service.getAllPersons();
+        return personService.getAllPersons();
     }
 }

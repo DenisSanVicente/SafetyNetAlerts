@@ -7,4 +7,5 @@ import java.util.List;
 public interface MedicalRecordService {
 
     List<MedicalRecord> getAllMedicalRecords();
+
 }

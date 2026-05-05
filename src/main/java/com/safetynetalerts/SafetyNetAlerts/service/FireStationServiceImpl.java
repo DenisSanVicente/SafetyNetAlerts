@@ -1,22 +1,22 @@
 package com.safetynetalerts.SafetyNetAlerts.service;
 
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
-import com.safetynetalerts.SafetyNetAlerts.repository.FireStationRepository;
+import com.safetynetalerts.SafetyNetAlerts.repository.DataRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service // SPRING
+@Service
 public class FireStationServiceImpl implements FireStationService {
 
-    private final FireStationRepository repository;
+    private final DataRepository dataRepository;
 
-    public FireStationServiceImpl(FireStationRepository repository) {
-        this.repository = repository;
+    public FireStationServiceImpl(DataRepository dataRepository) {
+        this.dataRepository = dataRepository;
     }
 
     @Override
     public List<FireStation> getAllFireStations() {
-        return repository.findAll();
+        return dataRepository.getData().getFirestations();
     }
 }

@@ -1,23 +1,23 @@
 package com.safetynetalerts.SafetyNetAlerts.service;
 
+
 import com.safetynetalerts.SafetyNetAlerts.model.MedicalRecord;
-import com.safetynetalerts.SafetyNetAlerts.repository.MedicalRecordRepository;
+import com.safetynetalerts.SafetyNetAlerts.repository.DataRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service // SPRING
+@Service
 public class MedicalRecordServiceImpl implements MedicalRecordService {
 
-    private final MedicalRecordRepository repository;
+    private final DataRepository dataRepository;
 
-
-    public MedicalRecordServiceImpl(MedicalRecordRepository repository) {
-        this.repository = repository;
+    public MedicalRecordServiceImpl(DataRepository dataRepository) {
+        this.dataRepository = dataRepository;
     }
 
     @Override
     public List<MedicalRecord> getAllMedicalRecords() {
-        return repository.findAll();
+        return dataRepository.getData().getMedicalrecords();
     }
 }

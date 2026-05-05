@@ -1,7 +1,7 @@
 package com.safetynetalerts.SafetyNetAlerts.service;
 
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
-import com.safetynetalerts.SafetyNetAlerts.repository.PersonRepository;
+import com.safetynetalerts.SafetyNetAlerts.repository.DataRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,16 +9,14 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    private final PersonRepository repository;
+    private final DataRepository dataRepository;
 
-    public PersonServiceImpl(PersonRepository repository) {
-        this.repository = repository;
+    public PersonServiceImpl(DataRepository dataRepository) {
+        this.dataRepository = dataRepository;
     }
 
     @Override
     public List<Person> getAllPersons() {
-        return repository.findAll();
+        return dataRepository.getData().getPersons();
     }
-
-
 }
