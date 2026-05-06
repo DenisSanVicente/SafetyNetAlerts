@@ -31,4 +31,5 @@ public class DataRepository {
     public SafetyNetData getData() {
         return safetyNetData;
     }
+
 }
