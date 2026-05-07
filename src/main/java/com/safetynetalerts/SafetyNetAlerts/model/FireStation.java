@@ -9,5 +9,5 @@ import lombok.*;
 public class FireStation {
 
     private String address;
-    private String station;
+    private int station;
 }
