@@ -1,5 +1,6 @@
 package com.safetynetalerts.SafetyNetAlerts.service;
 
+import com.safetynetalerts.SafetyNetAlerts.DTO.FireDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireStationCoverageDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.PersonCoveredDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
@@ -15,5 +16,12 @@ public interface FireStationService {
     List<FireStation> getFireStationsByStationNumber(int stationNumber); // On classe les stations selon leurs numéros
 
     FireStationCoverageDTO getPersonsCoveredByStation(int stationNumber);
+
+    /// ===== ETAPE 3 - URL 4 ===== ///
+    FireDTO getFireInfoByAddress(String address);
+
+    int getStationNumberByAddress(String address);
+
+    List<Person> getPersonsByAddress(String address);
 
     }

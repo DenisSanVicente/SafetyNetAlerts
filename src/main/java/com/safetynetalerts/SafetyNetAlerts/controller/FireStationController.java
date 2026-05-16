@@ -1,5 +1,6 @@
 package com.safetynetalerts.SafetyNetAlerts.controller;
 
+import com.safetynetalerts.SafetyNetAlerts.DTO.FireDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireStationCoverageDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
@@ -30,4 +31,10 @@ public class FireStationController {
     public FireStationCoverageDTO getCoverage(@RequestParam int stationNumber) {
         return service.getPersonsCoveredByStation(stationNumber);
     }
+
+    @GetMapping
+    public FireDTO getFireInfo(@RequestParam String address) {
+        return service.getFireInfoByAddress(address);
+    }
+
 }

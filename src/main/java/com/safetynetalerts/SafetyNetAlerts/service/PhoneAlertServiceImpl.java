@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/// ===== ETAPE 3 - Endpoint 3 ===== ///
+/// ===== ETAPE 3 - URL 3 ===== ///
 @Service
 @RequiredArgsConstructor
 public class PhoneAlertServiceImpl implements PhoneAlertService {
