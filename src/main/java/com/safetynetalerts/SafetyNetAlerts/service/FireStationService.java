@@ -24,4 +24,14 @@ public interface FireStationService {
 
     List<Person> getPersonsByAddress(String address);
 
+    /// ===== ETAPE 3 - ENDPOINT 2 ///
+    // POST - Ajouter une firestation
+    FireStation addFireStation(FireStation fireStation);
+
+    // PUT - Modifier firestation
+    FireStation updateFireStation(FireStation fireStation);
+
+    // DELETE - Supprimer firestation
+    boolean deleteFireStation(String address);
+
     }

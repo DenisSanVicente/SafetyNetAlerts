@@ -1,6 +1,5 @@
 package com.safetynetalerts.SafetyNetAlerts.DTO;
 
-import com.safetynetalerts.SafetyNetAlerts.model.MedicationModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -2,9 +2,7 @@ package com.safetynetalerts.SafetyNetAlerts.controller;
 
 import com.safetynetalerts.SafetyNetAlerts.model.MedicalRecord;
 import com.safetynetalerts.SafetyNetAlerts.service.MedicalRecordService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,14 +10,38 @@ import java.util.List;
 @RequestMapping("/medicalrecords")
 public class MedicalRecordController {
 
-    private final MedicalRecordService service;
+    private final MedicalRecordService medicalRecordService;
 
     public MedicalRecordController(MedicalRecordService service) {
-        this.service = service;
+
+        this.medicalRecordService = service;
     }
 
     @GetMapping
     public List<MedicalRecord> getAllMedicalRecords() {
-        return service.getAllMedicalRecords();
+
+        return medicalRecordService.getAllMedicalRecords();
+    }
+
+    /// ETAPE 3 - ENDPOINT 3 ===== ///
+    @PostMapping("/medicalrecord")
+    public MedicalRecord addMedicalRecord(
+            @RequestBody MedicalRecord medicalRecord) {
+
+        return medicalRecordService.addMedicalRecord(medicalRecord);
+    }
+
+    @PutMapping("/medicalrecord")
+    public MedicalRecord updateMedicalRecord(
+            @RequestBody MedicalRecord medicalRecord) {
+
+        return medicalRecordService.updateMedicalRecord(medicalRecord);
+    }
+
+    @DeleteMapping("/medicalRecord")
+    public boolean deleteMedicalRecord(@RequestParam String firstName,
+                                       @RequestParam String lastName) {
+
+        return medicalRecordService.deleteMedicalRecord(firstName, lastName);
     }
 }

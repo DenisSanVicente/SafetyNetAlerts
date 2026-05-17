@@ -5,7 +5,7 @@ import com.safetynetalerts.SafetyNetAlerts.model.SafetyNetData;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository // SPRING - Permet de créer automatiquement les beans
 public class DataRepository {
 
     private SafetyNetData safetyNetData;

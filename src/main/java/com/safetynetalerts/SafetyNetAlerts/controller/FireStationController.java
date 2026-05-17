@@ -5,10 +5,7 @@ import com.safetynetalerts.SafetyNetAlerts.DTO.FireStationCoverageDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
 import com.safetynetalerts.SafetyNetAlerts.service.FireStationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,25 +13,47 @@ import java.util.List;
 @RequestMapping
 public class FireStationController {
 
-    private final FireStationService service;
+    private final FireStationService fireStationService;
 
     public FireStationController(FireStationService service) {
-        this.service = service;
+        this.fireStationService = service;
     }
 
     @GetMapping("/firestations")
     public List<FireStation> getAllFireStations() {
-        return service.getAllFireStations();
+        return fireStationService.getAllFireStations();
     }
 
     @GetMapping("/firestation")
     public FireStationCoverageDTO getCoverage(@RequestParam int stationNumber) {
-        return service.getPersonsCoveredByStation(stationNumber);
+        return fireStationService.getPersonsCoveredByStation(stationNumber);
     }
 
-    @GetMapping
+    @GetMapping("/firestation")
     public FireDTO getFireInfo(@RequestParam String address) {
-        return service.getFireInfoByAddress(address);
+
+        return fireStationService.getFireInfoByAddress(address);
     }
 
+    /// ===== ETAPE 3 - ENDPOINT 2 ===== ///
+    @PostMapping("/firestation")
+    public FireStation addFireStation(
+            @RequestBody FireStation fireStation) {
+
+        return fireStationService.addFireStation(fireStation);
+    }
+
+    @PutMapping("/firestation")
+    public FireStation updatedFireStation(
+            @RequestBody FireStation fireStation) {
+
+        return fireStationService.updateFireStation(fireStation);
+    }
+
+    @DeleteMapping("/firestation")
+    public boolean deleteFireStation(
+            @RequestParam String address) {
+
+        return fireStationService.deleteFireStation(address);
+    }
 }

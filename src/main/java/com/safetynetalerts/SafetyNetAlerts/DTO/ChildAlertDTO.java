@@ -16,5 +16,5 @@ public class ChildAlertDTO {
     private String firstName;
     private String lastName;
     private int age;
-    private List<HouseHoldMemberDTO> houseHoldMembers;
+    private List<HouseholdMemberDTO> householdMembers;
 }

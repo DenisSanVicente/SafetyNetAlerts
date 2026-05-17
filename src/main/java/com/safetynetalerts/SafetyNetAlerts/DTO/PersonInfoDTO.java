@@ -1,6 +1,5 @@
 package com.safetynetalerts.SafetyNetAlerts.DTO;
 
-import com.safetynetalerts.SafetyNetAlerts.model.MedicationModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class PersonInfoDTO {
     private String firstName;
     private String address;
     private int age;
-    private String mail;
+    private String email;
     private List<String> medications;
     private List<String> allergies;
 }

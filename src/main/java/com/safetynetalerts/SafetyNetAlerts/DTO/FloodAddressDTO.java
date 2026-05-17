@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-/// ===== ETAPE 3 - Endpoint 5 ===== ///
+/// ===== ETAPE 3 - URL 5 ===== ///
 @Getter
 @Setter
 @NoArgsConstructor

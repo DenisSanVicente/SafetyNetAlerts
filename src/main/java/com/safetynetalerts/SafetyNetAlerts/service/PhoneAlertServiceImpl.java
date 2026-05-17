@@ -8,9 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-/// ===== ETAPE 3 - URL 3 ===== ///
 @Service
 @RequiredArgsConstructor
 public class PhoneAlertServiceImpl implements PhoneAlertService {
@@ -20,43 +21,30 @@ public class PhoneAlertServiceImpl implements PhoneAlertService {
     @Override
     public PhoneAlertDTO getPhonesByStation(int stationNumber) {
 
-        // Récupération des adresses couvertes par la station
-        List<String> addresses = getFireStationAddresses(stationNumber);
-
-        // Récupération de toutes les personnes
+        List<String> addresses = getAddressesByStation(stationNumber);
         List<Person> allPersons = dataRepository.getData().getPersons();
 
-        // Liste des téléphones
-        List<String> phones = new ArrayList<>();
+        Set<String> phones = new HashSet<>();
 
-        // Parcours des personnes
         for (Person person : allPersons) {
 
-            // Vérifie si l'adresse est couverte
             if (addresses.contains(person.getAddress())) {
-
-                // Évite les doublons
-                if (!phones.contains(person.getPhone())) {
-                    phones.add(person.getPhone());
-                }
+                phones.add(person.getPhone());
             }
         }
 
-        return new PhoneAlertDTO(phones);
+        return new PhoneAlertDTO(new ArrayList<>(phones));
     }
 
     /**
-     * Récupération des adresses associées à une station
+     * Récupère les adresses associées à une station
      */
-    private List<String> getFireStationAddresses(int stationNumber) {
+    private List<String> getAddressesByStation(int stationNumber) {
 
         List<String> addresses = new ArrayList<>();
-
-        List<FireStation> fireStations =
-                dataRepository.getData().getFirestations();
+        List<FireStation> fireStations = dataRepository.getData().getFirestations();
 
         for (FireStation fs : fireStations) {
-
             if (fs.getStation() == stationNumber) {
                 addresses.add(fs.getAddress());
             }

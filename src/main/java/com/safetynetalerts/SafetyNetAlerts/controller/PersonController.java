@@ -1,7 +1,6 @@
 package com.safetynetalerts.SafetyNetAlerts.controller;
 
 import com.safetynetalerts.SafetyNetAlerts.DTO.ChildAlertDTO;
-import com.safetynetalerts.SafetyNetAlerts.DTO.CommunityEmailDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.PersonInfoDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.PhoneAlertDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
@@ -60,5 +59,26 @@ public class PersonController {
             @RequestParam String city) {
 
         return personService.getEmailsByCity(city);
+    }
+
+    /// ===== ETAPE 3 - ENDPOINT 1 ===== ///
+    // Ajouter une personne
+    @PostMapping("/person")
+    public Person addPerson(@RequestBody Person person) {
+        return personService.addPerson(person);
+    }
+
+    // Update une personne
+    @PutMapping("/person")
+    public Person updatePerson(@RequestBody Person person) {
+        return personService.updatePerson(person);
+    }
+
+    // Supprimer une personne
+    @DeleteMapping("/person")
+    public boolean deletePerson(
+            @RequestParam String firstName,
+            @RequestParam String lastName) {
+        return personService.deletePerson(firstName, lastName);
     }
 }

@@ -10,16 +10,17 @@ public interface PersonService {
 
     List<Person> getAllPersons();
 
-    /// ===== ETAPE 3 - URL 2 ===== ///
-    // Récupérer les personnes par adresse
-    List<Person> getAllPersonsByAddress(String address);
+    List<Person> getPersonsByAddress(String address);
 
-    // Récupérer les enfants de -18 ans
     List<ChildAlertDTO> getChildrenByAddress(String address);
 
-    /// ===== ETAPE 3 - URL 6 ===== ///
     List<PersonInfoDTO> getPersonInfoByLastName(String lastName);
 
-    /// ===== ETAPE 3 - URL 7 ===== ///
     List<String> getEmailsByCity(String city);
+
+    Person addPerson(Person person);
+
+    Person updatePerson(Person person);
+
+    boolean deletePerson(String firstName, String lastName);
 }
