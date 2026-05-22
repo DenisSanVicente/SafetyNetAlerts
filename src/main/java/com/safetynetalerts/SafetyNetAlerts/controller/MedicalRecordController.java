@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/medicalrecords")
+@RequestMapping("/medicalRecord")
 public class MedicalRecordController {
 
     private final MedicalRecordService medicalRecordService;
@@ -23,24 +23,25 @@ public class MedicalRecordController {
         return medicalRecordService.getAllMedicalRecords();
     }
 
-    /// ETAPE 3 - ENDPOINT 3 ===== ///
-    @PostMapping("/medicalrecord")
+    /// ===== ETAPE 3 - ENDPOINT 3 ===== ///
+    @PostMapping
     public MedicalRecord addMedicalRecord(
             @RequestBody MedicalRecord medicalRecord) {
 
         return medicalRecordService.addMedicalRecord(medicalRecord);
     }
 
-    @PutMapping("/medicalrecord")
+    @PutMapping
     public MedicalRecord updateMedicalRecord(
             @RequestBody MedicalRecord medicalRecord) {
 
         return medicalRecordService.updateMedicalRecord(medicalRecord);
     }
 
-    @DeleteMapping("/medicalRecord")
-    public boolean deleteMedicalRecord(@RequestParam String firstName,
-                                       @RequestParam String lastName) {
+    @DeleteMapping
+    public boolean deleteMedicalRecord(
+            @RequestParam String firstName,
+            @RequestParam String lastName) {
 
         return medicalRecordService.deleteMedicalRecord(firstName, lastName);
     }

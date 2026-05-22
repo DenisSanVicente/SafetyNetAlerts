@@ -95,7 +95,7 @@ public class FireStationServiceImpl implements FireStationService {
             }
         }
 
-        return -1;
+        return 0;
     }
 
     // ===================== ENDPOINTS =====================
@@ -211,5 +211,24 @@ public class FireStationServiceImpl implements FireStationService {
         }
 
         return false;
+    }
+
+
+    /**
+     * Récupère les adresses associées à une station
+     */
+    @Override
+    public  List<String> getAddressesByStation(int stationNumber) {
+
+        List<String> addresses = new ArrayList<>();
+        List<FireStation> fireStations = dataRepository.getData().getFirestations();
+
+        for (FireStation fs : fireStations) {
+            if (fs.getStation() == stationNumber) {
+                addresses.add(fs.getAddress());
+            }
+        }
+
+        return addresses;
     }
 }

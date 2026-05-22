@@ -46,7 +46,7 @@ public class PersonController {
     }
 
     /// ===== ETAPE 3 - URL 6 ===== ///
-    @GetMapping("/personInfo")
+    @GetMapping("/personInfolastName")
     public List<PersonInfoDTO> getPersonInfoByLastName(
             @RequestParam String lastName) {
 

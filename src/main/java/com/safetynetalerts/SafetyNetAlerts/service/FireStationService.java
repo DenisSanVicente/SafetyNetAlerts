@@ -2,7 +2,6 @@ package com.safetynetalerts.SafetyNetAlerts.service;
 
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireStationCoverageDTO;
-import com.safetynetalerts.SafetyNetAlerts.DTO.PersonCoveredDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
 import com.safetynetalerts.SafetyNetAlerts.model.Person;
 
@@ -33,5 +32,9 @@ public interface FireStationService {
 
     // DELETE - Supprimer firestation
     boolean deleteFireStation(String address);
+
+
+
+    List<String> getAddressesByStation(int stationNumber);
 
     }
