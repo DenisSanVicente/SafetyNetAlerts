@@ -1,6 +1,7 @@
 package com.safetynetalerts.SafetyNetAlerts.service;
 
 import com.safetynetalerts.SafetyNetAlerts.model.MedicalRecord;
+import com.safetynetalerts.SafetyNetAlerts.model.Person;
 import com.safetynetalerts.SafetyNetAlerts.repository.DataRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +37,19 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         log.info("addMedicalRecord OK");
 
         return medicalRecord;
+    }
+
+    @Override
+    public MedicalRecord getMedicalRecordByPerson(Person person) {
+
+        for (MedicalRecord mr : dataRepository.getData().getMedicalrecords()) {
+            if (mr.getFirstName().equals(person.getFirstName())
+                    && mr.getLastName().equals(person.getLastName())) {
+                return mr;
+            }
+        }
+
+        return null;
     }
 
     // ===================== UPDATE =====================

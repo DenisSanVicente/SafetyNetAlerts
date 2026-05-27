@@ -21,7 +21,6 @@ public interface FireStationService {
 
     int getStationNumberByAddress(String address);
 
-    List<Person> getPersonsByAddress(String address);
 
     /// ===== ETAPE 3 - ENDPOINT 2 ///
     // POST - Ajouter une firestation

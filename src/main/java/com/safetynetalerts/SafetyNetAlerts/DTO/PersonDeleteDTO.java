@@ -2,16 +2,12 @@ package com.safetynetalerts.SafetyNetAlerts.DTO;
 
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChildAlertDTO {
+public class PersonDeleteDTO {
 
     private String firstName;
     private String lastName;
-    private int age;
-    private List<HouseholdMemberDTO> householdMembers;
 }

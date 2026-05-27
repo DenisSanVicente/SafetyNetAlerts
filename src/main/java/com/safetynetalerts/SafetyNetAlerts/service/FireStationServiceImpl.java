@@ -23,9 +23,17 @@ public class FireStationServiceImpl implements FireStationService {
 
     private final DataRepository dataRepository;
 
-    public FireStationServiceImpl(DataRepository dataRepository) {
+    private final PersonService personService;
+
+    private final MedicalRecordService medicalRecordService;
+
+    public FireStationServiceImpl(DataRepository dataRepository, PersonService personService, MedicalRecordService medicalRecordService) {
         this.dataRepository = dataRepository;
+        this.personService = personService;
+        this.medicalRecordService = medicalRecordService;
     }
+
+
 
     @Override
     public List<FireStation> getAllFireStations() {
@@ -33,7 +41,7 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
     @Override
-    public List<FireStation> getFireStationsByStationNumber(int stationNumber) {
+    public List<FireStation> getFireStationsByStationNumber(int stationNumber) { /// TEST OK ///
 
         List<FireStation> result = new ArrayList<>();
 
@@ -61,33 +69,9 @@ public class FireStationServiceImpl implements FireStationService {
         return addresses;
     }
 
-    private MedicalRecord getMedicalRecordByPerson(Person person) {
-
-        for (MedicalRecord mr : dataRepository.getData().getMedicalrecords()) {
-            if (mr.getFirstName().equals(person.getFirstName())
-                    && mr.getLastName().equals(person.getLastName())) {
-                return mr;
-            }
-        }
-
-        return null;
-    }
-
-    public List<Person> getPersonsByAddress(String address) {
-
-        List<Person> result = new ArrayList<>();
-
-        for (Person person : dataRepository.getData().getPersons()) {
-            if (person.getAddress().equals(address)) {
-                result.add(person);
-            }
-        }
-
-        return result;
-    }
 
     @Override
-    public int getStationNumberByAddress(String address) {
+    public int getStationNumberByAddress(String address) { /// TEST OK ///
 
         for (FireStation fs : dataRepository.getData().getFirestations()) {
             if (fs.getAddress().equals(address)) {
@@ -121,7 +105,7 @@ public class FireStationServiceImpl implements FireStationService {
 
                 personsCovered.add(dto);
 
-                MedicalRecord mr = getMedicalRecordByPerson(ps);
+                MedicalRecord mr = medicalRecordService.getMedicalRecordByPerson(ps);
 
                 if (mr != null) {
                     int age = AgeCalculator.calculateAge(mr.getBirthdate());
@@ -142,13 +126,13 @@ public class FireStationServiceImpl implements FireStationService {
     public FireDTO getFireInfoByAddress(String address) {
 
         int stationNumber = getStationNumberByAddress(address);
-        List<Person> persons = getPersonsByAddress(address);
+        List<Person> persons = personService.getPersonsByAddress(address);
 
         List<FirePersonDTO> residents = new ArrayList<>();
 
         for (Person person : persons) {
 
-            MedicalRecord mr = getMedicalRecordByPerson(person);
+            MedicalRecord mr = medicalRecordService.getMedicalRecordByPerson(person);
 
             if (mr != null) {
 
@@ -171,8 +155,34 @@ public class FireStationServiceImpl implements FireStationService {
         return fireDTO;
     }
 
+    /**
+     * Récupère les adresses associées à une station
+     * @param stationNumber
+     * @return
+     */
+    @Override
+    public  List<String> getAddressesByStation(int stationNumber) {
+
+        List<String> addresses = new ArrayList<>();
+        List<FireStation> fireStations = dataRepository.getData().getFirestations();
+
+        for (FireStation fs : fireStations) {
+            if (fs.getStation() == stationNumber) {
+                addresses.add(fs.getAddress());
+            }
+        }
+
+        return addresses;
+    }
+
+
     // ===================== CRUD =====================
 
+    /**
+     * Ajouter une station à la liste
+     * @param fireStation
+     * @return
+     */
     @Override
     public FireStation addFireStation(FireStation fireStation) {
 
@@ -180,6 +190,12 @@ public class FireStationServiceImpl implements FireStationService {
         return fireStation;
     }
 
+
+    /**
+     * Mettre à jour les informations d'une station
+     * @param updatedFireStation
+     * @return
+     */
     @Override
     public FireStation updateFireStation(FireStation updatedFireStation) {
 
@@ -193,6 +209,12 @@ public class FireStationServiceImpl implements FireStationService {
         return null;
     }
 
+
+    /**
+     * Supprime une station de la liste
+     * @param address
+     * @return
+     */
     @Override
     public boolean deleteFireStation(String address) {
 
@@ -214,21 +236,5 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
 
-    /**
-     * Récupère les adresses associées à une station
-     */
-    @Override
-    public  List<String> getAddressesByStation(int stationNumber) {
 
-        List<String> addresses = new ArrayList<>();
-        List<FireStation> fireStations = dataRepository.getData().getFirestations();
-
-        for (FireStation fs : fireStations) {
-            if (fs.getStation() == stationNumber) {
-                addresses.add(fs.getAddress());
-            }
-        }
-
-        return addresses;
-    }
 }
