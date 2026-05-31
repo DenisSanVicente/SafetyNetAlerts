@@ -2,10 +2,10 @@ package com.safetynetalerts.SafetyNetAlerts.model;
 
 import lombok.*;
 
-@Getter // LOMBOK
-@Setter // LOMBOK
-@NoArgsConstructor // LOMBOK
-@AllArgsConstructor // LOMBOK
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
     private String firstName;

@@ -3,7 +3,6 @@ package com.safetynetalerts.SafetyNetAlerts.service;
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireDTO;
 import com.safetynetalerts.SafetyNetAlerts.DTO.FireStationCoverageDTO;
 import com.safetynetalerts.SafetyNetAlerts.model.FireStation;
-import com.safetynetalerts.SafetyNetAlerts.model.Person;
 
 import java.util.List;
 
@@ -23,17 +22,12 @@ public interface FireStationService {
 
 
     /// ===== ETAPE 3 - ENDPOINT 2 ///
-    // POST - Ajouter une firestation
     FireStation addFireStation(FireStation fireStation);
 
-    // PUT - Modifier firestation
     FireStation updateFireStation(FireStation fireStation);
 
-    // DELETE - Supprimer firestation
     boolean deleteFireStation(String address);
-
-
 
     List<String> getAddressesByStation(int stationNumber);
 
-    }
+}

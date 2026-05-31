@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 // Activer Mockito
@@ -250,38 +252,46 @@ class FireStationServiceImplTest {
         fs.setStation(1);
         fs.setAddress("1509 Culver St");
 
-        SafetyNetData data = new SafetyNetData();
-        data.setFirestations(new ArrayList<>(List.of(fs)));
-
-        // Création de la personne
         Person person = new Person();
         person.setFirstName("John");
         person.setLastName("Doe");
         person.setAddress("1509 Culver St");
         person.setPhone("123-456");
 
-        data.setPersons(new ArrayList<>(List.of(person)));
+        // Mock repository data
+        SafetyNetData data = new SafetyNetData();
+        data.setFirestations(List.of(fs));
+        data.setPersons(List.of(person));
 
         when(dataRepository.getData()).thenReturn(data);
 
-        // Mock de MedicalRecord
-        MedicalRecord mr = new MedicalRecord();
-        mr.setBirthdate("01/01/2010"); // Changer la date pour simuler un adulte
+        // IMPORTANT : mock du service utilisé dans la méthode
+        when(personService.getPersonsByAddress("1509 Culver St"))
+                .thenReturn(List.of(person));
 
-        when(medicalRecordService.getMedicalRecordByPerson(person)).thenReturn(mr);
+        // Medical record mock
+        MedicalRecord mr = new MedicalRecord();
+        mr.setBirthdate("01/01/2010");
+        mr.setMedications(new ArrayList<>());
+        mr.setAllergies(new ArrayList<>());
+
+        when(medicalRecordService.getMedicalRecordByPerson(any(Person.class)))
+                .thenReturn(mr);
 
         // WHEN
         FireStationCoverageDTO result = service.getPersonsCoveredByStation(1);
 
         // THEN
         assertAll(
+                () -> assertNotNull(result),
+                () -> assertEquals(1, result.getPersons().size()),
                 () -> assertEquals("John", result.getPersons().get(0).getFirstName()),
                 () -> assertEquals("Doe", result.getPersons().get(0).getLastName()),
                 () -> assertEquals("1509 Culver St", result.getPersons().get(0).getAddress()),
                 () -> assertEquals("123-456", result.getPersons().get(0).getPhone()),
-                () -> assertEquals(0, result.getAdultCount()),
-                () -> assertEquals(1, result.getChildCount())
-                );
+                () -> assertEquals(1, result.getChildCount()),
+                () -> assertEquals(0, result.getAdultCount())
+        );
     }
 
     @Test
@@ -319,7 +329,6 @@ class FireStationServiceImplTest {
         assertEquals("Doe", result.getResidents().get(0).getLastName());
         assertEquals("123-456", result.getResidents().get(0).getPhoneNumber());
     }
-
 
 
     /// METHODES A TESTER DANS L'ORDRE

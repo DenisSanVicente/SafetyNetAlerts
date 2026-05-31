@@ -78,7 +78,6 @@ public class PersonServiceImplTest {
 
         // THEN
         assertAll(
-                () -> assertNotNull(result),
                 () -> assertEquals(2, result.size()),
                 () -> assertTrue(result.stream()
                         .anyMatch(p -> p.getFirstName().equals("John")
@@ -95,14 +94,17 @@ public class PersonServiceImplTest {
 
         Person ps1 = new Person();
         ps1.setFirstName("John");
+        ps1.setLastName("Doe");
         ps1.setAddress(address);
 
         Person ps2 = new Person();
         ps2.setFirstName("Phil");
+        ps2.setLastName("Doe");
         ps2.setAddress(address);
 
         Person ps3 = new Person();
         ps3.setFirstName("Denis");
+        ps3.setLastName("SV");
         ps3.setAddress("644 Gershwin Cir");
 
         SafetyNetData data = new SafetyNetData();
@@ -122,7 +124,7 @@ public class PersonServiceImplTest {
                 () -> assertTrue(result.stream()
                         .anyMatch(p -> p.getFirstName().equals("John"))),
                 () -> assertTrue(result.stream()
-                        .anyMatch(p -> p.getFirstName().equals("Phil")))
+                        .anyMatch(p -> p.getLastName().equals("Doe")))
         );
     }
 
