@@ -51,7 +51,7 @@ class FireInfoIT {
         data.setPersons(List.of(person));
         data.setMedicalrecords(List.of(mr));
 
-        dataRepository.setData(data);
+        //dataRepository.setData(data);
     }
 
     @Test

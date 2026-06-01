@@ -13,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 @SpringBootTest
 class ChildAlertIT {
 
@@ -51,7 +54,7 @@ class ChildAlertIT {
         data.setMedicalrecords(List.of(childMr, adultMr));
         data.setFirestations(List.of());
 
-        dataRepository.setData(data);
+        when(dataRepository.getData()).thenReturn(data);
     }
 
     @Test

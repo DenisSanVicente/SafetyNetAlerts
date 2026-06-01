@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class FireStationCoverageIT {
@@ -58,8 +59,10 @@ class FireStationCoverageIT {
 
         data.setMedicalrecords(List.of(mr));
 
-        dataRepository.setData(data);
+        // IMPORTANT : on mock le repository
+        when(dataRepository.getData()).thenReturn(data);
     }
+
 
     @Test
     void shouldReturnPersonsCoveredByStation() {
