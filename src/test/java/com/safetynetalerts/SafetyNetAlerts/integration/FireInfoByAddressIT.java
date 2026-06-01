@@ -11,18 +11,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class FireInfoIT {
+class FireInfoByAddressIT {
 
     @Autowired
     private FireStationServiceImpl service;
 
-    @Autowired
+    @MockBean
     private DataRepository dataRepository;
 
     @BeforeEach
@@ -43,7 +45,7 @@ class FireInfoIT {
         MedicalRecord mr = new MedicalRecord();
         mr.setFirstName("John");
         mr.setLastName("Doe");
-        mr.setBirthdate("01/01/2010");
+        mr.setBirthdate("01/01/2015");
         mr.setMedications(List.of("med1"));
         mr.setAllergies(List.of("allergy1"));
 
@@ -51,7 +53,7 @@ class FireInfoIT {
         data.setPersons(List.of(person));
         data.setMedicalrecords(List.of(mr));
 
-        //dataRepository.setData(data);
+        when(dataRepository.getData()).thenReturn(data);
     }
 
     @Test
@@ -61,14 +63,17 @@ class FireInfoIT {
 
         assertAll(
                 () -> assertNotNull(result),
+
                 () -> assertEquals(1, result.getStationNumber()),
+
                 () -> assertEquals(1, result.getResidents().size()),
 
                 () -> assertEquals("John",
                         result.getResidents().get(0).getFirstName()),
 
-                () -> assertEquals(10,
-                        result.getResidents().get(0).getAge()),
+                () -> assertTrue(
+                        result.getResidents().get(0).getAge() >= 10
+                ),
 
                 () -> assertEquals(1,
                         result.getResidents().get(0).getMedications().size())

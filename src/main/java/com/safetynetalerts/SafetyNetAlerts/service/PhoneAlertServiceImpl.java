@@ -15,7 +15,7 @@ import java.util.Set;
 @Service
 public class PhoneAlertServiceImpl implements PhoneAlertService {
 
-    private static final Logger log = LogManager.getLogger(PersonServiceImpl.class);
+    private static final Logger log = LogManager.getLogger(PhoneAlertServiceImpl.class);
 
     private final DataRepository dataRepository;
 

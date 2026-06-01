@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ class ChildAlertIT {
     @Autowired
     private PersonServiceImpl personService;
 
-    @Autowired
+    @MockBean
     private DataRepository dataRepository;
 
     @BeforeEach
