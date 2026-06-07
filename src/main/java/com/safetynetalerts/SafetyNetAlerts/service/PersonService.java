@@ -12,8 +12,9 @@ public interface PersonService {
 
     List<Person> getPersonsByAddress(String address);
 
+    /// ===== DEMONSTRATION FLUX ===== ///
+    ///
     List<ChildAlertDTO> getChildrenByAddress(String address);
-
 
     List<PersonInfoDTO> getPersonInfoByLastName(String lastName);
 

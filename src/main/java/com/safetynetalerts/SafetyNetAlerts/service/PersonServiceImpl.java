@@ -85,7 +85,8 @@ public class PersonServiceImpl implements PersonService {
         return personsByAddress;
     }
 
-    // ===== ETAPE 3 - URL 2 ===== //
+    /// ===== DEMONSTRATION FLUX ===== //
+
 
     /**
      * Récupère la liste des enfants vivant à une adresse spécifique.

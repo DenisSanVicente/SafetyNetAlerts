@@ -25,12 +25,6 @@ public class PersonServiceImplTest {
     @Mock
     private DataRepository dataRepository;
 
-    @Mock
-    private MedicalRecordService medicalRecordService;
-
-    @Mock
-    FireStationService fireStationService;
-
     @InjectMocks
     private PersonServiceImpl personService;
 

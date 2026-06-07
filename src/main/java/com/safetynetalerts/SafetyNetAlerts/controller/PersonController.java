@@ -29,7 +29,10 @@ public class PersonController {
         return personService.getAllPersons();
     }
 
-    /// ===== ETAPE 3 - URL 2 ===== ///
+
+
+    /// ===== DEMONSTRATION FLUX DE DONNNES ===== ///
+    ///
     @GetMapping("/childAlert")
     public List<ChildAlertDTO> getChildrenByAddress(
             @RequestParam String address) {
@@ -37,7 +40,7 @@ public class PersonController {
         return personService.getChildrenByAddress(address);
     }
 
-    /// ===== ETAPE 3 - URL 3 ===== ///
+
     @GetMapping("/phoneAlert")
     public PhoneAlertDTO getPhonesByStation(
             @RequestParam int firestation) {
@@ -45,7 +48,7 @@ public class PersonController {
         return phoneAlertService.getPhonesByStation(firestation);
     }
 
-    /// ===== ETAPE 3 - URL 6 ===== ///
+
     @GetMapping("/personInfolastName")
     public List<PersonInfoDTO> getPersonInfoByLastName(
             @RequestParam String lastName) {
@@ -53,7 +56,7 @@ public class PersonController {
         return personService.getPersonInfoByLastName(lastName);
     }
 
-    /// ===== ETAPE 3 - URL 7 ===== ///
+
     @GetMapping("/communityEmail")
     public List<String> getCommunityEmails(
             @RequestParam String city) {
@@ -61,7 +64,7 @@ public class PersonController {
         return personService.getEmailsByCity(city);
     }
 
-    /// ===== ETAPE 3 - ENDPOINT 1 ===== ///
+
     // Ajouter une personne
     @PostMapping("/person")
     public Person addPerson(@RequestBody Person person) {
